@@ -3,7 +3,7 @@ import joblib
 
 from datetime import datetime
 
-model = joblib.load("../models/catboost_model.pkl")
+model = joblib.load("models/catboost_model.pkl")
 
 def predict_price(data):
     current_year = datetime.now().year

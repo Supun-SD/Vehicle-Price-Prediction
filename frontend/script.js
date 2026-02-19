@@ -5,15 +5,32 @@ async function loadDropdownData() {
   dropdownData = await response.json();
 
   populateBrandDropdown();
-  populateSimpleDropdown("condition", dropdownData.condition_options, "Condition");
-  populateSimpleDropdown("transmission", dropdownData.transmission_options, "Transmission");
-  populateSimpleDropdown("body_type", dropdownData.body_type_options, "Body Type");
-  populateSimpleDropdown("fuel_type", dropdownData.fuel_type_options, "Fuel Type");
+  populateSimpleDropdown(
+    "condition",
+    dropdownData.condition_options,
+    "Condition",
+  );
+  populateSimpleDropdown(
+    "transmission",
+    dropdownData.transmission_options,
+    "Transmission",
+  );
+  populateSimpleDropdown(
+    "body_type",
+    dropdownData.body_type_options,
+    "Body Type",
+  );
+  populateSimpleDropdown(
+    "fuel_type",
+    dropdownData.fuel_type_options,
+    "Fuel Type",
+  );
 }
 
 function populateBrandDropdown() {
   const brandSelect = document.getElementById("brand");
-  brandSelect.innerHTML = '<option value="" disabled selected>Select Brand</option>';
+  brandSelect.innerHTML =
+    '<option value="" disabled selected>Select Brand</option>';
 
   Object.keys(dropdownData.brand_model_mapping).forEach((brand) => {
     const option = document.createElement("option");
@@ -28,7 +45,8 @@ function populateBrandDropdown() {
 function updateModelDropdown() {
   const brand = document.getElementById("brand").value;
   const modelSelect = document.getElementById("model");
-  modelSelect.innerHTML = '<option value="" disabled selected>Select Model</option>';
+  modelSelect.innerHTML =
+    '<option value="" disabled selected>Select Model</option>';
 
   if (!brand) return;
 
@@ -67,7 +85,7 @@ document
     const originalText = button.textContent;
     button.disabled = true;
     button.textContent = "Predicting...";
-    
+
     const resultDiv = document.getElementById("result");
     resultDiv.textContent = "";
 
@@ -109,7 +127,7 @@ document
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/predict", {
+      const response = await fetch("http://localhost:8000/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
